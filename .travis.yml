@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- 12.16.1
+install:
+- cd app1
+- npm install
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  api_key:
+    secure: F05FMq8d6BOcJwBi6+fMNarQfJ1e2KnZM3ZX5QspzU3aR+K+sYxwFhsRqCdPhL6vub8UbYxUNdEGfUuwPuh0s3Nv+ry6QES671z6BMcMAqn7gDK5vu85kUT3eF/apVHeqxbpfHGjRZC8O0zMpQueHA+quhwGN3L1DIkbAFakUcnPNZ3awlMbrmJ2YbvkIXLWBbNEgYcwUD4Yk8PUqNpZkK2uhpDaXhspmNMQ0LqUWCavcLyl5ov2h7iPaKKID71hAZaWDjGjoaoy37DWLsGls3z1DoOa07YS1hSr6v2MqhwOSrDC8WYWGRrWG1uJjJXO1MzSzsIUv2SY9JW6Q8JufebQEfN3WkORk4s2ntZmPNyXuYwiLtEARDEWpWF+n+8SvG81kVpg1Po3LL6txdc47crDawOIaDuUBc0iduqgf1D41qWYkwurbbP7T0wZ9N/NgGz9wJmuCKm1AkzwZn5f58YGXj2fQjoLl31IEmzbA+hpNVEpv/W4mvksH8BQHmGCRSf3Vhw2SshbCK2xgjFqLvSmhBF6csvh2xqshKedzyGNCu0XmFjSqvKKIhXo53z0ACIrhC7cfleoGsnZEhYTKmEPQleITA7p6V60WHr336MTSK0Ietxz5sbnXzKohWRoIIGgz9xvIJinPzkHQsWw7jevzq0xgoTG5dY9Rl+qEBY=
+  app:
+    heroku-deploy: monorepo-app1
