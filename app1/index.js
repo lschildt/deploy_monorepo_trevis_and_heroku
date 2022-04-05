@@ -1,6 +1,7 @@
 const express = require('express')
+const config = require('config')
 const app = express()
-const port = app.get('port')
+const port =  process.env.PORT || config.get('server.port')
 
 app.get('/', (req, res) => {
   res.send('App1')
