@@ -17,8 +17,8 @@ deploy_service_job: &DEPLOY_SERVICE_JOB
     - cd -
 
   script:
-      - npm run test
-      
+      - ./configure && make
+       
 jobs:
   include:
     - <<: *DEPLOY_APP1
