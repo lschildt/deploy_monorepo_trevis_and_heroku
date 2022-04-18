@@ -14,7 +14,7 @@ deploy_service_job: &DEPLOY_SERVICE_JOB
     - cd -
 
   script:
-      - ./configure && make
+      - ./configure
        
 jobs:
   include:
