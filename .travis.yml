@@ -3,10 +3,16 @@ node_js:
 - 12.16.1
 
 deploy_service_job: &DEPLOY_SERVICE_JOB
+  cache:
+    directories:
+      - node_modules
+      - ${SERVICE_PATH}/node_modules
 
-  install:
+  script:
     - cd ${SERVICE_PATH}
     - npm install
+    - npm test
+    - cd -
        
 jobs:
   include:
