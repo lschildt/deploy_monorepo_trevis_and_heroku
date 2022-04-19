@@ -20,4 +20,5 @@ jobs:
   include:
     - <<: *DEPLOY_SERVICE_JOB
       name: "Deploy App1"
-      script: echo "hello world App1"
+      env:
+        - SERVICE_PATH="app1"
