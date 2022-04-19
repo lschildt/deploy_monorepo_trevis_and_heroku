@@ -5,6 +5,7 @@ node_js:
 branches:
   only:
     - test
+    - master
 
 deploy_service_job: &DEPLOY_SERVICE_JOB
   cache:
