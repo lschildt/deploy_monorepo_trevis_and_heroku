@@ -18,6 +18,6 @@ deploy_service_job: &DEPLOY_SERVICE_JOB
 
 jobs:
   include:
-    - <<: **DEPLOY_SERVICE_JOB
+    - <<: *DEPLOY_SERVICE_JOB
       name: "Deploy App1"
       script: echo "hello world App1"
