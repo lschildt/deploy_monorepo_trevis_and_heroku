@@ -2,8 +2,10 @@ language: node_js
 node_js:
 - 12.16.1
 
-before_install:
-- rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
+branches:
+  only:
+    - test
+    - master
 
 deploy_service_job: &DEPLOY_SERVICE_JOB
   cache:
@@ -11,21 +13,21 @@ deploy_service_job: &DEPLOY_SERVICE_JOB
       - node_modules
       - ${SERVICE_PATH}/node_modules
 
-  install:
+  script:
+    - echo "Run script"
+    - echo ${SERVICE_PATH}
     - cd ${SERVICE_PATH}
     - npm install
-    - cd -
 
-  script:
-      - npm run test
-      
 jobs:
   include:
-    - <<: *DEPLOY_APP1
+    - <<: *DEPLOY_SERVICE_JOB
       name: "Deploy App1"
       env:
         - SERVICE_PATH="app1"
-    - <<: *DEPLOY_APP2
-      name: "Deploy App2"
-      env:
-        - SERVICE_PATH="app2"
+      deploy:
+        provider: heroku
+        api_key:
+          secure: QeneOgtZhotZObUZ6DHSgdZzy40OBX97RmhlvGIzJmPFR2BhOcHtvw1FNhojW6EhVJF9uVBZcVteaeCtTWtAhuE00QZceCEwA8YIs8qiftstuM2aK61SHhApAOMqjywz/GCdPv7GuR9V2V/7vYDtegAM4c3JkvUrWvHsUnrKoz9yTLqA2wVMIjQ5Artc5bKwMuYjzmHpM5GU3MzucZaObfnC9lDUoUjQxi4LhzYyuyeWNNvwjyCtbBbYMyLjZWU3r4YgbF7ZC4VzGrsNvcy4iKgfWqIFLBverrh9dp9JJMuoHeo8RYq/r/LZVETsJx8n/OWMbdvl9KJPX59ZO7eioTgvpPmyfhxKObPRjrtj12gHupaqpuxoL/ZQG9+kAFG3mx73BDT5cnyVdoh1IserMxQpQltUBpLQv1MPktmZlxuP2mCqjSkyVjXU72WeYwu/DoWuTKOs4uoQ9E2zT635qGYM7nLdOuXNbmVJIf3fiN0AZdNz+fMtVziQACVjNB4P2dpPgumvbsy8JItAFXQjSOuOZviPR6wp6AJjIJ+3LzG6T7uVZeBWf2z0+JFjNhuHIDT/a2PQ9UNcc+nLJcHh79i7ot289DB3uBjO9iSs7OVwwVNgj+NyxWsDfe53hF/EP04rEt6aDOK4RNo6s8BPrjO4LDApBB/VRxWM60/vMX8=
+        app:
+          master: monorepo-app1
