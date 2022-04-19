@@ -2,21 +2,12 @@ language: node_js
 node_js:
 - 12.16.1
 
-deploy_service_job: &DEPLOY_SERVICE_JOB
-  cache:
-    directories:
-      - node_modules
-      - ${SERVICE_PATH}/node_modules
+branches:
+  only:
+    - test
 
-  script:
-    - cd ${SERVICE_PATH}
-    - npm install
-    - npm test
-    - cd -
-       
 jobs:
   include:
     - <<: *DEPLOY_APP1
       name: "Deploy App1"
-      env:
-        - SERVICE_PATH="app1"
+      script: echo "hello world App1"
