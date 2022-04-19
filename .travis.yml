@@ -2,6 +2,10 @@ language: node_js
 node_js:
 - 12.16.1
 
+branches:
+  only:
+    - test
+
 deploy_service_job: &DEPLOY_SERVICE_JOB
   cache:
     directories:
@@ -11,10 +15,6 @@ deploy_service_job: &DEPLOY_SERVICE_JOB
   script:
     - echo "Run script"
     - echo ${SERVICE_PATH}
-
-branches:
-  only:
-    - test
 
 jobs:
   include:
